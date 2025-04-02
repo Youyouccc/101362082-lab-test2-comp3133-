@@ -12,7 +12,6 @@ import { Mission } from '../models/mission';
 export class MissiondetailsComponent {
   @Input() mission: Mission | null = null;
 
-  // Safe accessor methods for template
   getMissionName(): string {
     return this.mission?.mission_name || 'Unknown Mission';
   }

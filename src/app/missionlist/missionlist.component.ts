@@ -36,7 +36,6 @@ export class MissionlistComponent {
     });
   }
 
-  // Safe accessor methods
   getMissionPatch(mission: Mission): string {
     return mission.links?.mission_patch_small || '';
   }

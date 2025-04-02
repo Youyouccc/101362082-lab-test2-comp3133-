@@ -1,4 +1,4 @@
-/* Add these exact styles */
+
 :root {
     --primary-color: #3f51b5;
   }
@@ -16,13 +16,13 @@
     height: 64px;
     display: flex;
     align-items: center;
-    width: 100vw; /* Full viewport width */
+    width: 100vw; 
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    position: relative; /* Ensure it stays on top */
+    position: relative; 
     z-index: 1000;
   }
   
   .content {
     padding: 20px;
-    min-height: calc(100vh - 104px); /* Full height minus header */
+    min-height: calc(100vh - 104px); 
   }
