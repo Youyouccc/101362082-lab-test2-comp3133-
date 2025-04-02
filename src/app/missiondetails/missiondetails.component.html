@@ -1,3 +1,48 @@
-<h2>{{ mission.mission_name }}</h2>
-<img [src]="mission.links.mission_patch_small" alt="Mission Patch">
-<p>{{ mission.details }}</p>
+<div class="details-container" *ngIf="mission">
+    <div class="mission-details-card">
+      <div class="mission-details-header">
+        <img class="mission-patch" 
+             [src]="getMissionPatch()" 
+             [alt]="getMissionName() + ' patch'">
+        <div>
+          <h1>{{ getMissionName() }}</h1>
+          <p class="mission-subtitle">
+            Flight #{{ getFlightNumber() }} ({{ getLaunchYear() }})
+          </p>
+        </div>
+      </div>
+  
+      <img *ngIf="getMissionPatch()" 
+           class="mission-patch-large" 
+           [src]="getMissionPatch()" 
+           [alt]="getMissionName() + ' patch'">
+  
+      <div class="mission-details-content">
+        <h3>Rocket Details</h3>
+        <p><strong>Name:</strong> {{ getRocketName() }}</p>
+        <p><strong>Type:</strong> {{ getRocketType() }}</p>
+  
+        <h3>Launch Details</h3>
+        <p>{{ getDetails() }}</p>
+      </div>
+  
+      <div class="mission-actions">
+        <a class="btn" 
+           [href]="getArticleLink()" 
+           target="_blank"
+           rel="noopener noreferrer">Article</a>
+        <a class="btn" 
+           [href]="getWikipediaLink()" 
+           target="_blank"
+           rel="noopener noreferrer">Wikipedia</a>
+        <a class="btn" 
+           [href]="getVideoLink()" 
+           target="_blank"
+           rel="noopener noreferrer">Watch Video</a>
+      </div>
+    </div>
+  </div>
+  
+  <div *ngIf="!mission" class="loading-message">
+    <p>Loading mission details...</p>
+  </div>

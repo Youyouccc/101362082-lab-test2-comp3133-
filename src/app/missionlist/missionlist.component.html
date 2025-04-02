@@ -1,7 +1,44 @@
-<div *ngFor="let mission of missions">
-    <h3>{{ mission.mission_name }} ({{ mission.launch_year }})</h3>
-    <img [src]="mission.links.mission_patch_small" alt="Mission Patch">
-    <p>{{ mission.details }}</p>
-    <a [href]="mission.links.article_link" target="_blank">Read More</a>
-  </div>
+<div class="container">
+  <h1>SpaceX Mission Launch List</h1>
   
+  <app-missionfilter (yearSelected)="filterMissions($event)"></app-missionfilter>
+  
+  <div *ngIf="isLoading" class="spinner"></div>
+  
+  <div *ngFor="let mission of filteredMissions" class="mission-card">
+    <div class="mission-header">
+      <img class="mission-patch" 
+           [src]="getMissionPatch(mission)" 
+           [alt]="getMissionName(mission) + ' patch'">
+      <div>
+        <h2>{{ getMissionName(mission) }}</h2>
+        <p class="mission-subtitle">
+          Flight #{{ mission.flight_number }} ({{ mission.launch_year }})
+        </p>
+      </div>
+    </div>
+    
+    <div class="mission-content">
+      <p>{{ mission.details || 'No details available' }}</p>
+      <p>
+        <strong>Rocket:</strong> 
+        {{ getRocketName(mission) }} ({{ getRocketType(mission) }})
+      </p>
+    </div>
+    
+    <div class="mission-actions">
+      <a class="btn" 
+         [href]="getArticleLink(mission)" 
+         target="_blank"
+         rel="noopener noreferrer">Article</a>
+      <a class="btn" 
+         [href]="getWikipediaLink(mission)" 
+         target="_blank"
+         rel="noopener noreferrer">Wikipedia</a>
+      <a class="btn" 
+         [href]="getVideoLink(mission)" 
+         target="_blank"
+         rel="noopener noreferrer">Watch Video</a>
+    </div>
+  </div>
+</div>

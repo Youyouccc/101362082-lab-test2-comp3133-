@@ -1,26 +1,55 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { SpacexService } from '../services/spacex.service';
+import { Component, Input } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Mission } from '../models/mission';
 
 @Component({
   selector: 'app-missiondetails',
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './missiondetails.component.html',
-  styleUrls: ['./missiondetails.component.css']
+  styleUrls: ['./missiondetails.component.css'] 
 })
-export class MissiondetailsComponent implements OnInit {
-  mission: any;
+export class MissiondetailsComponent {
+  @Input() mission: Mission | null = null;
 
-  constructor(private route: ActivatedRoute, private spacexService: SpacexService) {}
+  // Safe accessor methods for template
+  getMissionName(): string {
+    return this.mission?.mission_name || 'Unknown Mission';
+  }
 
-  ngOnInit(): void {
-    const flightNumber = this.route.snapshot.paramMap.get('id');
+  getFlightNumber(): string {
+    return this.mission?.flight_number?.toString() || 'N/A';
+  }
 
-    if (flightNumber) {
-      this.spacexService.getMissionDetails(flightNumber).subscribe((data) => {
-        this.mission = data;
-      });
-    } else {
-      console.error('Invalid flight number');
-    }
+  getLaunchYear(): string {
+    return this.mission?.launch_year || 'Unknown Year';
+  }
+
+  getMissionPatch(): string {
+    return this.mission?.links?.mission_patch_small || '';
+  }
+
+  getRocketName(): string {
+    return this.mission?.rocket?.rocket_name || 'Unknown Rocket';
+  }
+
+  getRocketType(): string {
+    return this.mission?.rocket?.rocket_type || 'Unknown Type';
+  }
+
+  getDetails(): string {
+    return this.mission?.details || 'No details available';
+  }
+
+  getArticleLink(): string {
+    return this.mission?.links?.article_link || '#';
+  }
+
+  getWikipediaLink(): string {
+    return this.mission?.links?.wikipedia || '#';
+  }
+
+  getVideoLink(): string {
+    return this.mission?.links?.video_link || '#';
   }
 }

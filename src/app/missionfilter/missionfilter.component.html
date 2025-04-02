@@ -1,7 +1,12 @@
-<input type="text" [(ngModel)]="launchYear" placeholder="Enter launch year">
-<button (click)="filterMissions()">Search</button>
-
-<div *ngFor="let mission of missions">
-  <h3>{{ mission.mission_name }} ({{ mission.launch_year }})</h3>
-  <p>{{ mission.details }}</p>
+<div class="filter-container">
+  <h2>Filter by Launch Year</h2>
+  <div class="year-buttons">
+    <button *ngFor="let year of years" 
+            class="year-btn"
+            [class.active]="selectedYear === year"
+            (click)="onYearSelect(year)">
+      {{ year }}
+    </button>
+  </div>
+  <button class="btn clear-btn" (click)="clearFilter()">Clear Filter</button>
 </div>

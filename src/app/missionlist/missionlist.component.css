@@ -1,0 +1,11 @@
+.container {
+    padding: 20px;
+  }
+  
+  .mission-card {
+    margin-bottom: 20px;
+  }
+  
+  mat-spinner {
+    margin: 20px auto;
+  }

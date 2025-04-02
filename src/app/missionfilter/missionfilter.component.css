@@ -1,0 +1,10 @@
+.filter-container {
+    margin-bottom: 20px;
+  }
+  
+  .year-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
